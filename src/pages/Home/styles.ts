@@ -28,7 +28,10 @@ export const Row = styled.View`
   justify-content: space-between;
 `;
 
-export const Logo = styled.Image``;
+export const Logo = styled.Image`
+  width: 20px;
+  height: 20px;
+`;
 
 export const AddressContainer = styled.View`
   flex-direction: row;
@@ -48,13 +51,19 @@ export const AddressTextSelected = styled.Text`
   font-size: 15px;
 `;
 
-export const AvatarContainer = styled.View``;
+export const AvatarContainer = styled.View`
+  border: 5px ${({ theme }) => theme.colors.primary};
+  border-radius: 50px;
+  width: 49px;
+  height: 49px;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const Avatar = styled.Image`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  border: 3px ${({ theme }) => theme.colors.primary};
+  border-radius: 50px;
+  width: 42px;
+  height: 42px;
 `;
 
 export const Search = styled.View``;
