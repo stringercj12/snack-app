@@ -1,6 +1,7 @@
-export const theme = {
+export default {
   colors: {
     background: "#F6F9FA",
+    background_light: "#F5F9FC",
     primary: "#572D86",
     secondary: "#C3D61B",
 

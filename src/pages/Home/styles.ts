@@ -1,10 +1,11 @@
-import styled, { css } from "styled-components/native";
+import { FlatList } from "react-native";
+import styled from "styled-components/native";
 
 interface CategoryProps {
   selected: boolean;
 }
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
 `;
@@ -116,7 +117,9 @@ export const CategoryHeaderSubTitle = styled.Text`
   font-size: 15px;
 `;
 
-export const CategoryList = styled.FlatList.attrs({
+export const CategoryList = styled(
+  FlatList as new () => FlatList<string[]>
+).attrs({
   contentContainerStyle: {
     paddingLeft: 25,
   },
@@ -131,8 +134,8 @@ export const Category = styled.TouchableOpacity<CategoryProps>`
   justify-content: space-between;
   margin-right: 15px;
 
-  background-color: ${({ theme, seletecd }) =>
-    seletecd ? theme.colors.primary : theme.colors.shape};
+  background-color: ${({ theme, selected }) =>
+    selected ? theme.colors.primary : theme.colors.shape};
 `;
 
 export const CategoryImage = styled.Image``;
@@ -141,8 +144,8 @@ export const CategoryName = styled.Text<CategoryProps>`
   font-family: ${({ theme }) => theme.fonts.medium};
   font-size: 12px;
 
-  color: ${({ theme, seletecd }) =>
-    seletecd ? theme.colors.shape : theme.colors.sub_title};
+  color: ${({ theme, selected }) =>
+    selected ? theme.colors.shape : theme.colors.sub_title};
 `;
 
 export const Scroll = styled.ScrollView.attrs({
@@ -151,6 +154,6 @@ export const Scroll = styled.ScrollView.attrs({
   },
 })``;
 
-export const CardProductContainer = styled.View`
+export const CardProductContainer = styled.TouchableOpacity`
   margin-bottom: 23px;
 `;

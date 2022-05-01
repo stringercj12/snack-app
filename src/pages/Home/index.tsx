@@ -33,11 +33,32 @@ import { FlatList, StyleSheet } from "react-native";
 import { useTheme } from "styled-components";
 import { Title } from "../../components/Title";
 import { CardProduct } from "../../components/CardProduct";
+import { useNavigation } from "@react-navigation/native";
 
 export function Home() {
-  const [categorySelected, setCategorySelected] = useState("0");
+  const [categorySelected, setCategorySelected] = useState<string>("0");
+  const [categories, setCategories] = useState<Array<string>>([
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ]);
 
   const theme = useTheme();
+  const navigation = useNavigation();
+
+  function navigateToDetails() {
+    navigation.navigate("Details");
+  }
+
   return (
     <Container>
       <Header>
@@ -77,18 +98,18 @@ export function Home() {
           </CategoryHeader>
         </HeaderTop>
         <CategoryList
-          data={["0", "1", "2", "3", "4", "5", "6", "8", "9", "10", "11", "12"]}
-          keyExtractor={(item: string) => String(item)}
+          data={categories}
+          keyExtractor={(item) => item}
           horizontal
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => {
             return (
               <Category
-                seletecd={categorySelected === item}
+                selected={categorySelected === item}
                 onPress={() => setCategorySelected(item)}
               >
                 <CategoryImage source={pizza} />
-                <CategoryName seletecd={categorySelected === item}>
+                <CategoryName selected={categorySelected === item}>
                   Pizzas
                 </CategoryName>
               </Category>
@@ -100,19 +121,25 @@ export function Home() {
       <Scroll>
         <Title key="Pizzas-1">Pizzas</Title>
 
-        <CardProductContainer key="Pizzas-1.1">
+        <CardProductContainer key="Pizzas-1.1" onPress={navigateToDetails}>
           <CardProduct />
         </CardProductContainer>
-        <CardProductContainer key="Pizzas-1.2">
+        <CardProductContainer key="Pizzas-1.2" onPress={navigateToDetails}>
           <CardProduct />
         </CardProductContainer>
 
         <Title key="Hamburguesas-2">Hamburguesas</Title>
 
-        <CardProductContainer key="Hamburguesas-1.1">
+        <CardProductContainer
+          key="Hamburguesas-1.1"
+          onPress={navigateToDetails}
+        >
           <CardProduct />
         </CardProductContainer>
-        <CardProductContainer key="Hamburguesas-1.2">
+        <CardProductContainer
+          key="Hamburguesas-1.2"
+          onPress={navigateToDetails}
+        >
           <CardProduct />
         </CardProductContainer>
       </Scroll>
